@@ -1,0 +1,93 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+    <Package Name="Roblox Game Maintenance Tool"
+             Manufacturer="Neil"
+             Version="1.0.0.0"
+             UpgradeCode="a1b2c3d4-e5f6-7890-abcd-ef0123456789"
+             Compressed="yes"
+             Scope="perMachine">
+
+        <MajorUpgrade DowngradeErrorMessage="已安裝更新版本的 [ProductName]。" />
+        <MediaTemplate EmbedCab="yes" />
+
+        <!-- 定義安裝根目錄為 C:\ProgramData -->
+        <StandardDirectory Id="CommonAppDataFolder">
+            <Directory Id="INSTALLFOLDER" Name="RobloxGameMaintenanceTool">
+                
+                <!-- 主程式與 DLL 檔案 -->
+                <Component Id="MainExecutable" Guid="*">
+                    <File Source="..\Release\RobloxGameMaintenanceTool.exe" KeyPath="yes" />
+                </Component>
+                <Component Id="Qt6CoreDll" Guid="*">
+                    <File Source="..\Release\Qt6Core.dll" KeyPath="yes" />
+                </Component>
+                <Component Id="Qt6GuiDll" Guid="*">
+                    <File Source="..\Release\Qt6Gui.dll" KeyPath="yes" />
+                </Component>
+                <Component Id="Qt6NetworkDll" Guid="*">
+                    <File Source="..\Release\Qt6Network.dll" KeyPath="yes" />
+                </Component>
+                <Component Id="Qt6SvgDll" Guid="*">
+                    <File Source="..\Release\Qt6Svg.dll" KeyPath="yes" />
+                </Component>
+                <Component Id="Qt6WidgetsDll" Guid="*">
+                    <File Source="..\Release\Qt6Widgets.dll" KeyPath="yes" />
+                </Component>
+                <Component Id="D3dCompilerDll" Guid="*">
+                    <File Source="..\Release\d3dcompiler_47.dll" KeyPath="yes" />
+                </Component>
+                <Component Id="DxCompilerDll" Guid="*">
+                    <File Source="..\Release\dxcompiler.dll" KeyPath="yes" />
+                </Component>
+                <Component Id="DxilDll" Guid="*">
+                    <File Source="..\Release\dxil.dll" KeyPath="yes" />
+                </Component>
+                <Component Id="Opengl32swDll" Guid="*">
+                    <File Source="..\Release\opengl32sw.dll" KeyPath="yes" />
+                </Component>
+
+                <!-- Qt外掛與子資料夾 (platforms, imageformats 等) -->
+                <Directory Id="platforms" Name="platforms" />
+                <Directory Id="imageformats" Name="imageformats" />
+                <Directory Id="styles" Name="styles" />
+                <Directory Id="iconengines" Name="iconengines" />
+                <Directory Id="tls" Name="tls" />
+                <Directory Id="translations" Name="translations" />
+                <Directory Id="generic" Name="generic" />
+                <Directory Id="networkinformation" Name="networkinformation" />
+
+            </Directory>
+        </StandardDirectory>
+
+        <!-- 功能與捷徑群組（已修正為正確的 ComponentRef） -->
+        <Feature Id="MainFeature" Title="Main Feature" Level="1">
+            <ComponentRef Id="MainExecutable" />
+            <ComponentRef Id="Qt6CoreDll" />
+            <ComponentRef Id="Qt6GuiDll" />
+            <ComponentRef Id="Qt6NetworkDll" />
+            <ComponentRef Id="Qt6SvgDll" />
+            <ComponentRef Id="Qt6WidgetsDll" />
+            <ComponentRef Id="D3dCompilerDll" />
+            <ComponentRef Id="DxCompilerDll" />
+            <ComponentRef Id="DxilDll" />
+            <ComponentRef Id="Opengl32swDll" />
+            <ComponentRef Id="ApplicationShortcut" />
+        </Feature>
+    </Package>
+
+    <!-- 建立開始功能表捷徑 -->
+    <Fragment>
+        <StandardDirectory Id="ProgramMenuFolder">
+            <Directory Id="ApplicationProgramsFolder" Name="RobloxGameMaintenanceTool">
+                <Component Id="ApplicationShortcut" Guid="*">
+                    <Shortcut Id="ApplicationStartMenuShortcut"
+                              Name="Roblox Game Maintenance Tool"
+                              Description="Roblox 遊戲維護工具"
+                              Target="[INSTALLFOLDER]RobloxGameMaintenanceTool.exe"
+                              WorkingDirectory="INSTALLFOLDER" />
+                    <RemoveFolder Id="CleanUpShortcuts" Directory="ApplicationProgramsFolder" On="uninstall"/>
+                    <RegistryValue Root="HKLM" Key="Software\RobloxGameMaintenanceTool" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+                </Component>
+            </Directory>
+        </StandardDirectory>
+    </Fragment>
+</Wix>
