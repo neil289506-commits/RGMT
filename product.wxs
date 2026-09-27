@@ -1,0 +1,452 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+<Package
+    Name="Roblox Game Maintenance Tool"
+    Manufacturer="Neil"
+    Version="1.0.0.0"
+    UpgradeCode="a1b2c3d4-e5f6-7890-abcd-ef0123456789"
+    Compressed="yes"
+    Scope="perMachine">
+
+    <MajorUpgrade
+        DowngradeErrorMessage="已安裝更新版本的 [ProductName]。" />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- ========================================================= -->
+    <!-- 安裝目錄                                                    -->
+    <!-- C:\ProgramData\RobloxGameMaintenanceTool                  -->
+    <!-- ========================================================= -->
+
+    <StandardDirectory Id="CommonAppDataFolder">
+
+        <Directory
+            Id="INSTALLFOLDER"
+            Name="RobloxGameMaintenanceTool">
+
+            <!-- ================================================= -->
+            <!-- 主程式                                              -->
+            <!-- ================================================= -->
+
+            <Component Id="MainExecutable" Guid="*">
+                <File
+                    Id="RobloxGameMaintenanceToolExe"
+                    Source="RobloxGameMaintenanceTool.exe"
+                    KeyPath="yes" />
+            </Component>
+
+
+            <!-- ================================================= -->
+            <!-- Qt DLL                                              -->
+            <!-- ================================================= -->
+
+            <Component Id="Qt6CoreDll" Guid="*">
+                <File
+                    Id="Qt6CoreDllFile"
+                    Source="Qt6Core.dll"
+                    KeyPath="yes" />
+            </Component>
+
+            <Component Id="Qt6GuiDll" Guid="*">
+                <File
+                    Id="Qt6GuiDllFile"
+                    Source="Qt6Gui.dll"
+                    KeyPath="yes" />
+            </Component>
+
+            <Component Id="Qt6NetworkDll" Guid="*">
+                <File
+                    Id="Qt6NetworkDllFile"
+                    Source="Qt6Network.dll"
+                    KeyPath="yes" />
+            </Component>
+
+            <Component Id="Qt6SvgDll" Guid="*">
+                <File
+                    Id="Qt6SvgDllFile"
+                    Source="Qt6Svg.dll"
+                    KeyPath="yes" />
+            </Component>
+
+            <Component Id="Qt6WidgetsDll" Guid="*">
+                <File
+                    Id="Qt6WidgetsDllFile"
+                    Source="Qt6Widgets.dll"
+                    KeyPath="yes" />
+            </Component>
+
+
+            <!-- ================================================= -->
+            <!-- DirectX / OpenGL Runtime                            -->
+            <!-- ================================================= -->
+
+            <Component Id="D3dCompilerDll" Guid="*">
+                <File
+                    Id="D3dCompilerDllFile"
+                    Source="d3dcompiler_47.dll"
+                    KeyPath="yes" />
+            </Component>
+
+            <Component Id="DxCompilerDll" Guid="*">
+                <File
+                    Id="DxCompilerDllFile"
+                    Source="dxcompiler.dll"
+                    KeyPath="yes" />
+            </Component>
+
+            <Component Id="DxilDll" Guid="*">
+                <File
+                    Id="DxilDllFile"
+                    Source="dxil.dll"
+                    KeyPath="yes" />
+            </Component>
+
+            <Component Id="Opengl32swDll" Guid="*">
+                <File
+                    Id="Opengl32swDllFile"
+                    Source="opengl32sw.dll"
+                    KeyPath="yes" />
+            </Component>
+
+
+            <!-- ================================================= -->
+            <!-- generic                                              -->
+            <!-- ================================================= -->
+
+            <Directory
+                Id="GenericFolder"
+                Name="generic">
+
+                <Component Id="GenericPlugin" Guid="*">
+                    <File
+                        Id="QtIoTouchPlugin"
+                        Source="generic\qtuiotouchplugin.dll"
+                        KeyPath="yes" />
+                </Component>
+
+            </Directory>
+
+
+            <!-- ================================================= -->
+            <!-- iconengines                                          -->
+            <!-- ================================================= -->
+
+            <Directory
+                Id="IconEnginesFolder"
+                Name="iconengines">
+
+                <Component Id="IconEnginesPlugin" Guid="*">
+                    <File
+                        Id="QSvgIconPlugin"
+                        Source="iconengines\qsvgicon.dll"
+                        KeyPath="yes" />
+                </Component>
+
+            </Directory>
+
+
+            <!-- ================================================= -->
+            <!-- imageformats                                         -->
+            <!-- 每個 DLL 獨立 Component                              -->
+            <!-- ================================================= -->
+
+            <Directory
+                Id="ImageFormatsFolder"
+                Name="imageformats">
+
+                <Component Id="QGifPlugin" Guid="*">
+                    <File
+                        Id="QGifPluginFile"
+                        Source="imageformats\qgif.dll"
+                        KeyPath="yes" />
+                </Component>
+
+                <Component Id="QIcnsPlugin" Guid="*">
+                    <File
+                        Id="QIcnsPluginFile"
+                        Source="imageformats\qicns.dll"
+                        KeyPath="yes" />
+                </Component>
+
+                <Component Id="QIcoPlugin" Guid="*">
+                    <File
+                        Id="QIcoPluginFile"
+                        Source="imageformats\qico.dll"
+                        KeyPath="yes" />
+                </Component>
+
+                <Component Id="QJpegPlugin" Guid="*">
+                    <File
+                        Id="QJpegPluginFile"
+                        Source="imageformats\qjpeg.dll"
+                        KeyPath="yes" />
+                </Component>
+
+                <Component Id="QSvgPlugin" Guid="*">
+                    <File
+                        Id="QSvgPluginFile"
+                        Source="imageformats\qsvg.dll"
+                        KeyPath="yes" />
+                </Component>
+
+                <Component Id="QTgaPlugin" Guid="*">
+                    <File
+                        Id="QTgaPluginFile"
+                        Source="imageformats\qtga.dll"
+                        KeyPath="yes" />
+                </Component>
+
+                <Component Id="QTiffPlugin" Guid="*">
+                    <File
+                        Id="QTiffPluginFile"
+                        Source="imageformats\qtiff.dll"
+                        KeyPath="yes" />
+                </Component>
+
+                <Component Id="QWbmpPlugin" Guid="*">
+                    <File
+                        Id="QWbmpPluginFile"
+                        Source="imageformats\qwbmp.dll"
+                        KeyPath="yes" />
+                </Component>
+
+                <Component Id="QWebpPlugin" Guid="*">
+                    <File
+                        Id="QWebpPluginFile"
+                        Source="imageformats\qwebp.dll"
+                        KeyPath="yes" />
+                </Component>
+
+            </Directory>
+
+
+            <!-- ================================================= -->
+            <!-- networkinformation                                  -->
+            <!-- ================================================= -->
+
+            <Directory
+                Id="NetworkInformationFolder"
+                Name="networkinformation">
+
+                <Component
+                    Id="NetworkInformationPlugin"
+                    Guid="*">
+
+                    <File
+                        Id="QNetworkListManagerPlugin"
+                        Source="networkinformation\qnetworklistmanager.dll"
+                        KeyPath="yes" />
+
+                </Component>
+
+            </Directory>
+
+
+            <!-- ================================================= -->
+            <!-- platforms                                            -->
+            <!-- ================================================= -->
+
+            <Directory
+                Id="PlatformsFolder"
+                Name="platforms">
+
+                <Component
+                    Id="PlatformsPlugin"
+                    Guid="*">
+
+                    <File
+                        Id="QWindowsPlugin"
+                        Source="platforms\qwindows.dll"
+                        KeyPath="yes" />
+
+                </Component>
+
+            </Directory>
+
+
+            <!-- ================================================= -->
+            <!-- styles                                               -->
+            <!-- ================================================= -->
+
+            <Directory
+                Id="StylesFolder"
+                Name="styles">
+
+                <Component
+                    Id="StylesPlugin"
+                    Guid="*">
+
+                    <File
+                        Id="QModernWindowsStylePlugin"
+                        Source="styles\qmodernwindowsstyle.dll"
+                        KeyPath="yes" />
+
+                </Component>
+
+            </Directory>
+
+
+            <!-- ================================================= -->
+            <!-- tls                                                  -->
+            <!-- 每個 DLL 獨立 Component                              -->
+            <!-- ================================================= -->
+
+            <Directory
+                Id="TlsFolder"
+                Name="tls">
+
+                <Component Id="QCertOnlyBackend" Guid="*">
+                    <File
+                        Id="QCertOnlyBackendFile"
+                        Source="tls\qcertonlybackend.dll"
+                        KeyPath="yes" />
+                </Component>
+
+                <Component Id="QSchannelBackend" Guid="*">
+                    <File
+                        Id="QSchannelBackendFile"
+                        Source="tls\qschannelbackend.dll"
+                        KeyPath="yes" />
+                </Component>
+
+            </Directory>
+
+        </Directory>
+
+    </StandardDirectory>
+
+
+    <!-- ========================================================= -->
+    <!-- 開始功能表                                                  -->
+    <!-- ========================================================= -->
+
+    <StandardDirectory Id="ProgramMenuFolder">
+
+        <Directory
+            Id="ApplicationProgramsFolder"
+            Name="Roblox Game Maintenance Tool">
+
+            <Component
+                Id="ApplicationShortcut"
+                Guid="*">
+
+                <Shortcut
+                    Id="ApplicationStartMenuShortcut"
+                    Name="Roblox Game Maintenance Tool"
+                    Description="Roblox 遊戲維護工具"
+                    Target="[INSTALLFOLDER]RobloxGameMaintenanceTool.exe"
+                    WorkingDirectory="INSTALLFOLDER" />
+
+                <RemoveFolder
+                    Id="CleanUpShortcuts"
+                    Directory="ApplicationProgramsFolder"
+                    On="uninstall" />
+
+                <RegistryValue
+                    Root="HKLM"
+                    Key="Software\RobloxGameMaintenanceTool"
+                    Name="StartMenuShortcut"
+                    Type="integer"
+                    Value="1"
+                    KeyPath="yes" />
+
+            </Component>
+
+        </Directory>
+
+    </StandardDirectory>
+
+
+    <!-- ========================================================= -->
+    <!-- 桌面捷徑                                                    -->
+    <!-- ========================================================= -->
+
+    <StandardDirectory Id="DesktopFolder">
+
+        <Component
+            Id="DesktopShortcutComponent"
+            Guid="*">
+
+            <Shortcut
+                Id="ApplicationDesktopShortcut"
+                Name="Roblox Game Maintenance Tool"
+                Description="Roblox 遊戲維護工具"
+                Target="[INSTALLFOLDER]RobloxGameMaintenanceTool.exe"
+                WorkingDirectory="INSTALLFOLDER" />
+
+            <RegistryValue
+                Root="HKLM"
+                Key="Software\RobloxGameMaintenanceTool"
+                Name="DesktopShortcut"
+                Type="integer"
+                Value="1"
+                KeyPath="yes" />
+
+        </Component>
+
+    </StandardDirectory>
+
+
+    <!-- ========================================================= -->
+    <!-- Feature                                                     -->
+    <!-- ========================================================= -->
+
+    <Feature
+        Id="MainFeature"
+        Title="Roblox Game Maintenance Tool"
+        Level="1">
+
+        <!-- 主程式 -->
+        <ComponentRef Id="MainExecutable" />
+
+        <!-- Qt DLL -->
+        <ComponentRef Id="Qt6CoreDll" />
+        <ComponentRef Id="Qt6GuiDll" />
+        <ComponentRef Id="Qt6NetworkDll" />
+        <ComponentRef Id="Qt6SvgDll" />
+        <ComponentRef Id="Qt6WidgetsDll" />
+
+        <!-- Runtime -->
+        <ComponentRef Id="D3dCompilerDll" />
+        <ComponentRef Id="DxCompilerDll" />
+        <ComponentRef Id="DxilDll" />
+        <ComponentRef Id="Opengl32swDll" />
+
+        <!-- generic -->
+        <ComponentRef Id="GenericPlugin" />
+
+        <!-- iconengines -->
+        <ComponentRef Id="IconEnginesPlugin" />
+
+        <!-- imageformats -->
+        <ComponentRef Id="QGifPlugin" />
+        <ComponentRef Id="QIcnsPlugin" />
+        <ComponentRef Id="QIcoPlugin" />
+        <ComponentRef Id="QJpegPlugin" />
+        <ComponentRef Id="QSvgPlugin" />
+        <ComponentRef Id="QTgaPlugin" />
+        <ComponentRef Id="QTiffPlugin" />
+        <ComponentRef Id="QWbmpPlugin" />
+        <ComponentRef Id="QWebpPlugin" />
+
+        <!-- networkinformation -->
+        <ComponentRef Id="NetworkInformationPlugin" />
+
+        <!-- platforms -->
+        <ComponentRef Id="PlatformsPlugin" />
+
+        <!-- styles -->
+        <ComponentRef Id="StylesPlugin" />
+
+        <!-- tls -->
+        <ComponentRef Id="QCertOnlyBackend" />
+        <ComponentRef Id="QSchannelBackend" />
+
+        <!-- Shortcuts -->
+        <ComponentRef Id="ApplicationShortcut" />
+        <ComponentRef Id="DesktopShortcutComponent" />
+
+    </Feature>
+
+</Package>
+
+</Wix>

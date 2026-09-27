@@ -1,0 +1,6 @@
+# 將 wxs 宣告為 XML
+*.wxs linguist-language=XML
+
+# 讓 CMake 相關檔案不計入 GitHub 的語言比例統計
+CMakeLists.txt linguist-detectable=false
+*.cmake linguist-detectable=false
